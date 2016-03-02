@@ -1,3 +1,22 @@
 language: ruby
 rvm:
   - jruby-1.7.24
+
+gemfile:
+  - Gemfile
+
+sudo: false
+
+cache: bundler
+
+before_script: "bundle update"
+
+script: "./bin/rspec spec"
+
+notifications:
+  webhooks:
+    urls:
+      - https://hooks.slack.com/services/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
+    on_pull_requests: false
+    on_success: change
+    on_failure: always
